@@ -1,0 +1,48 @@
+{% extends 'whitefreport/main.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Welcome {{e}}
+        {% endblock title %}
+    </title>
+</head>
+{% block content %}
+
+<body>
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        {{ message }} {{e}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="main_check">
+
+        <h1>Welcome to your Firebase data
+            <span style="color:rgb(0, 255, 76);padding: 0.3em;background:transparent;">{{e}}
+            </span>
+        </h1><br><br>
+        <div class="create_report">
+
+            <div class="welcome_report">
+                <button type="button" onclick=location.href="{% url 'create' %}" class="btn b">CREATE
+                    REPORT</button>&nbsp; &nbsp;
+                <button type="button" onclick=location.href="{% url 'check' %}" class="btn b">GO TO REPORTS</button>
+            </div>
+            <button type="button" onclick=location.href="{% url 'log' %}" class="btn b">Log out</button>
+        </div><br><br>
+
+        <img src="https://firebasestorage.googleapis.com/v0/b/newwhitefeather-90c13.appspot.com/o/images%2FFirebase%20front3.png?alt=media&token=cda8c3bb-0798-4150-b1ae-8be19d681a2a"
+            width="40%" height="auto" alt="">
+    </div>
+</body>
+{% endblock content %}
+
+</html>

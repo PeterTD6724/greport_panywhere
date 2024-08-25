@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>
+        {% block title %}
+        Home Firebase
+        {% endblock title %}
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-auto-a11y="true"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js" type="module"></script>
+
+    <script type="module" src="{% static '/js/pictures.js' %}" crossorigin="anonymous"></script>
+</head>
+{% block content %}
+
+
+
+<body>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="main_check">
+        <h1>Firebase data Home</h1>
+
+        <div class="sign_buttons">
+            <button type="button" onclick=location.href="{% url 'signin' %}" class="btn b">Sign in &amp;</button>
+            <button type="button" onclick=location.href="{% url 'signup' %}" class="btn b">Sign up</button>
+        </div><br><br>
+        <div class="main_images">
+            <!-- <img src="https://firebasestorage.googleapis.com/v0/b/newwhitefeather-90c13.appspot.com/o/images%2FFirebase%20front3.png?alt=media&token=cda8c3bb-0798-4150-b1ae-8be19d681a2a"
+                width="40%" height="auto" alt=""> -->
+            <!-- <img src="https://firebasestorage.googleapis.com/v0/b/newwhitefeather-90c13.appspot.com/o/images%2FIMG_20230720_130914_HDR.jpg?alt=media&token=a02de2ca-ed8e-485e-b226-5121fa6557ab"
+                width="28%" height="auto" alt=""> -->
+
+            <img src="https://firebasestorage.googleapis.com/v0/b/newwhitefeather-90c13.appspot.com/o/images%2FIMG_20230720_131136_HDR.jpg?alt=media&token=c6f8672c-ceeb-4c8d-abe8-8389a0af4610"
+                width="48%" height="auto" alt="">
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+{% block extra_js %}
+<!-- <script src="{% static '/js/home.js' %}" crossorigin="anonymous"></script> -->
+{% endblock %}
+
+</html>

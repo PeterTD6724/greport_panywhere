@@ -1,0 +1,66 @@
+{% extends 'whitefreport/main.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Firebase Sign in
+        {% endblock title %}
+    </title>
+</head>
+{% block content %}
+
+{% if messg %}
+<script>
+    alert('{{ messg }}');
+</script>
+{% endif %}
+
+<body>
+
+    <h1>Sign in to view your reports</h1>
+    <br><br>
+    <a href="{% url 'home' %}" class="btn btn-success float-end text-white" style=" padding: 0.5em;">
+        <i class="fa fa-reply" style="background:transparent;"></i>
+        &nbsp;Home &amp;</a><br><br>
+
+    <div>
+        <form action="/postsign/" method="POST">
+            {% csrf_token %}
+            Email :
+            <input rows="45" type="email" name="email" required
+                style="padding: 0.5em;background:rgb(196, 215, 241);color: rgb(33, 28, 28);width:20vw;"><br><br>
+            Password :
+            <input type="password" name="pass" required
+                style="padding: 0.5em;background:rgb(196, 215, 241);color: rgb(33, 28, 28);width:20vw;"><br><br><br>
+            &nbsp; &nbsp;&nbsp; &nbsp;<input class="signin_button" type="submit" value="Sign In"
+                title="Sign in"><br><br>
+            <hr>
+            <br><br>
+            <div class="signup_main">
+                <span>Don't have an account ? </span>&nbsp;
+                <button type="button" onclick=location.href="{% url 'signup' %}" class="btn b"
+                    title="Create an account">
+                    Sign up</button> &nbsp; &nbsp;
+                &nbsp;
+
+            </div>
+
+        </form>
+        <div class="main_images">
+            <img src="https://firebasestorage.googleapis.com/v0/b/newwhitefeather-90c13.appspot.com/o/images%2FFirebase%20front3.png?alt=media&token=cda8c3bb-0798-4150-b1ae-8be19d681a2a"
+                width="30%" height="auto" alt="">
+
+        </div>
+    </div>
+
+</body>
+
+{% endblock content %}
+
+</html>

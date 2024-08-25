@@ -1,0 +1,118 @@
+{% extends 'whitefreport/main.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Create {{e}}
+        {% endblock title %}
+    </title>
+</head>
+{% block content %}
+
+<body>
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="main_check">
+        <h1>NEW REPORT</h1>
+        <div class="create_report">
+            <button type="button" onclick=location.href="{% url 'check' %}" class="btn b">
+                <i class="fa fa-reply" style="font-size:24px;background: transparent;"></i>
+                &nbsp;BACK TO THE MAIN REPORTS
+            </button>
+            <h2 class="post_user">
+                User:
+                <span style="color:rgb(8, 244, 79);background:transparent;padding: 0.3em;">{{e}}</span>
+            </h2>
+        </div><br>
+
+        <div>
+            <form action="/post_create/" method="POST" style="margin-left: 0em;">
+                <div>
+                    <input class="create_submit" type="submit" value="SUBMIT REPORT" title=" Submit" />
+                    <br><br>
+                </div>
+                <div class="create_data">
+                    {% csrf_token %}
+                    <div>
+                        Name * : <br>
+                        <input type="text" name="task" placeholder="Type Name" required
+                            style="background:rgb(223, 223, 241);color: rgb(111, 10, 243);font-size: 14px;padding:0.5em;width:91vw;"><br>
+                        Subject * : <br>
+                        <input type="text" name="work" placeholder="Type Subject" required
+                            style="background:rgb(223, 223, 241);color: rgb(111, 10, 243);font-size: 14px;padding:0.5em;width:91vw;"><br>
+                        Url : <br>
+                        <input type="text" name="make" placeholder="Type url"
+                            style="background:rgb(223, 223, 241);color: rgb(111, 10, 243);font-size: 14px;padding:0.5em;width:91vw;"><br>
+                    </div>
+                    <div>
+                        Description : <br>
+                        <textarea rows="6" cols="auto" name="progress" placeholder="Type the report"
+                            style="background:rgb(223, 223, 241);color: rgb(111, 10, 243);font-size: 16px;padding:0.5em;width:91vw;"></textarea>
+                    </div>
+                </div>
+                <br><br>
+
+                <div class="upload_pic">
+                    <span style="padding:0.3em;font-weight: bold;display:flex;align-self:center;">UPLOAD IMAGE</span>
+                    &nbsp;
+                    &nbsp;
+
+                    <svg style="width:30px;background:transparent;rotate: -90deg;margin: 0;display:flex;align-self:center;"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+                    </svg>&nbsp; &nbsp;
+                    <br>
+                    <input type="file" name="files[]" id="files"
+                        style="background:rgb(223, 223, 241);color: rgb(111, 10, 243);font-size: 14px;padding:0.5em;margin: 0;display:flex;align-self:center;">
+
+                    <input type="hidden" name="url" id="url">
+                    <input type="hidden" name2="url2" id="url2"> &nbsp; &nbsp;
+
+                    <svg style="width:30px;background:transparent;rotate: -90deg;margin: 0;display:flex;align-self:center;"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+                    </svg>&nbsp; &nbsp;
+
+                    <button type="button" onclick="uploadimage()">
+                        <svg style="width:25px;background:transparent;margin: 0;" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="blue" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48">
+                            </path>
+                        </svg>&nbsp; &nbsp;
+
+                        Attach File</button>&nbsp; &nbsp;
+                    <svg style="width:25px;background:transparent;margin: 0;display:flex;align-self:center;"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                </div>
+
+            </form>
+        </div>
+</body>
+
+<!-- THE JS FILE -->
+
+{% endblock content %}
+
+</html>

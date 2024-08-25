@@ -1,0 +1,69 @@
+{% extends 'whitefreport/main.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Details {{e}}
+        {% endblock title %}
+    </title>
+</head>
+{% block content %}
+
+<body>
+    <div class="main_check">
+        <a style="width:auto;background: transparent;margin-left: 4em;"
+            href="https://console.firebase.google.com/u/0/project/newwhitefeather-90c13/database/newwhitefeather-90c13-default-rtdb/data"
+            target="_blank">
+            <h1> Detailed Report </h1>
+        </a>
+
+        <div class="post_check">
+            <button type="button" onclick=location.href="{% url 'check' %}" class="btn b">
+                <i class="fa fa-reply" style="font-size:24px;background: transparent;"></i>&nbsp;BACK TO THE MAIN
+                REPORTS</button>
+
+            <h2 class="post_user"> User:<span style="color:rgb(0, 255, 38);padding: 0.3em;background:transparent;">{{e}}
+                </span>&nbsp;
+                <span style="font-size:14px;">User ID:&nbsp; {{uid}}</span>
+            </h2>
+        </div>
+    </div>
+
+    <div class="postcheck">
+        <hr />
+        <p class="postcheck_down">Date
+            Created:&nbsp;<span class="postcheck_down">{{d}}</span>
+            &nbsp;/&nbsp;&nbsp;Item:&nbsp;<span class="postcheck_down">{{m}}</span></p>
+        <hr />
+        <p class="postcheck_down">Name:&nbsp;<span class="postcheck_down">{{t}}</span></p>
+        <hr />
+        <p class="postcheck_down">Subject:&nbsp;<span class="postcheck_down">{{w}}</span></p>
+        <hr />
+        <p class="postcheck_down">Details:&nbsp;<span class="postcheck_down">{{p}}</span></p>
+        <hr />
+        <p class="postcheck_down">
+            <a style="color: rgb(236, 228, 228);text-decoration: none;" href="{{hr}}" title="{{hr}}" target="_blank"><b>
+                    <span
+                        style="color: rgb(245, 238, 238);font-size: 24px; padding:4px;background: linear-gradient(45deg, rgba(4, 200, 254, 0.8), rgba(46, 4, 254, 0.8), rgba(233, 4, 254, 0.8), rgba(254, 8, 4, 0.8), rgba(233, 4, 254, 0.8), rgba(46, 4, 254, 0.8));">
+                        Go to the page</span>
+                </b></a>
+        </p>
+    </div> <br>
+
+    <div class="image_set">
+
+        <a class="image_postcheck" href="{{i}}" title="{{w}}" target="_blank">
+            <img src="{{i}}" alt="" width="100%" height="auto">
+        </a>
+    </div>
+
+</body>
+{% endblock content %}
+
+</html>
