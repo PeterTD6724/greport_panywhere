@@ -14,6 +14,10 @@ from django.contrib import messages
 from google.oauth2 import service_account
 from dotenv import load_dotenv
 from functools import wraps
+from django.http import JsonResponse
+from google.cloud import storage
+# from django.contrib.auth.decorators import login_required
+# from django.contrib.auth import login
 
 
 load_dotenv()
@@ -44,25 +48,6 @@ def home(request):
 def signin(request):
     return render(request, 'whitefreport/signin.html')
 
-# def login_required(f):
-#     @wraps(f)
-#     def wrap(request, *args, **kwargs):
-#         idtoken = request.session.get('uid')
-#         if idtoken:
-#             try:
-#                 # Check if the token is still valid
-#                 authe.get_account_info(idtoken)
-#                 return f(request, *args, **kwargs)
-#             except:
-#                 # If the token is invalid or expired, redirect to login
-#                 messages.error(request, "Session expired. Please log in again.")
-#                 return redirect('signin')
-#         else:
-#             # If no session is found, redirect to login
-#             messages.error(request, "You must be logged in to view this page.")
-#             return redirect('signin')
-#     return wrap
-
 def login_required(f):
     @wraps(f)
     def wrap(request, *args, **kwargs):
@@ -86,7 +71,6 @@ def login_required(f):
     return wrap
 
 
-@login_required
 def postsign(request):
     email = request.POST.get('email')
     passw = request.POST.get("pass")
@@ -144,7 +128,7 @@ def postsignup(request):
     database.child("users").child(uid).child("details").set(data)
     return render(request, "whitefreport/main.html")
 
-@login_required
+
 def create(request):
     idtoken = request.session["uid"]
     a = authe.get_account_info(idtoken)
@@ -188,7 +172,7 @@ def post_create(request):
         message=("Oooops! User logged out Please Sign in again")
         return render(request, 'whitefreport/signin.html', {'messg':message})
 
-@login_required   
+@login_required
 def check(request):
     idtoken = request.session.get('uid')
     
@@ -222,6 +206,7 @@ def check(request):
     except Exception as e:
         return render(request, "whitefreport/check.html", {'message': f"An error occured{str(e)}",'e': name,'uid': a})
 
+@login_required
 def post_check(request):
     time = request.GET.get(str('z'))
     if time is None or time == '':

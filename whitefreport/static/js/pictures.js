@@ -1,16 +1,15 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js';
 
-
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCvY5jMuYXAwUviHG_MgZVdObauFMCx08I",
+    apiKey: "",
     databaseURL: "https://newwhitefeather-90c13-default-rtdb.europe-west1.firebasedatabase.app",
     authDomain: "newwhitefeather-90c13.firebaseapp.com",
     projectId: "newwhitefeather-90c13",
     storageBucket: "newwhitefeather-90c13.appspot.com",
     messagingSenderId: "1961759878987",
-    appId: "1:125886529819:web:53f13806b2596b227413be",
+    appId: "",
     measurementId: "G-SMEZK10E7P"
 };
 
